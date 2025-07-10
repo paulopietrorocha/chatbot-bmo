@@ -26,6 +26,10 @@ const submenuTV = {
 };
 
 app.post("/webhook", async (req, res) => {
+  if (!req.body || !req.body.message || !req.body.message.body || !req.body.message.from) {
+    return res.sendStatus(200);
+  }
+
   const msg = req.body.message.body.trim();
   const number = req.body.message.from;
   const lowerMsg = msg.toLowerCase();
